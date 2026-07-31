@@ -1,0 +1,155 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+@layer base {
+  :root {
+    --navy: #0B0E14;
+    --navy-light: #14171F;
+    --cream: #e1e1e1;
+    --gold: #E8A33D;
+    --gold-dark: #C67B20;
+
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+      font-family: 'Inter', sans-serif;
+    color: #1a1a1a;
+    font-feature-settings: 'kern' 1, 'liga' 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+      background-color: white;
+  }
+}
+.phone-input {
+  display: flex;
+  align-items: center;
+  border: 1px solid #e5e7eb;
+  border-radius: 0.75rem;
+  padding: 0.75rem 1rem;
+  background: white;
+  transition: border-color .2s;
+}
+
+.phone-input:focus-within {
+  border-color: #fbbf24;
+  box-shadow: 0 0 0 2px rgba(251,191,36,.25);
+}
+
+.phone-input .PhoneInputCountry {
+  margin-right: 12px;
+}
+
+.phone-input input {
+  flex: 1;
+  border: none;
+  outline: none;
+  background: transparent;
+  min-width: 0;
+}
+.banner-orb {
+  position: absolute;
+  border-radius: 9999px;
+  filter: blur(40px);
+  opacity: 0.35;
+  will-change: transform;
+  pointer-events: none;
+}
+.banner-orb-gold {
+  width: 220px;
+  height: 220px;
+  top: -60px;
+  right: 10%;
+  background: radial-gradient(circle, #f5b942 0%, transparent 70%);
+  animation: drift-a 16s ease-in-out infinite;
+}
+.banner-orb-blue {
+  width: 260px;
+  height: 260px;
+  bottom: -100px;
+  left: 20%;
+  background: radial-gradient(circle, #c8dbff 0%, transparent 50%);
+  animation: drift-b 30s ease-in-out infinite;
+}
+@keyframes drift-a {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(-60px, 20px) scale(1.1); }
+}
+@keyframes drift-b {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(30px, -15px) scale(1.05); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .banner-orb { animation: none; }
+}
+@layer components {
+  /* Horizontal scroll snap carousel */
+  .scroll-snap-x {
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+
+  .scroll-snap-x::-webkit-scrollbar {
+    display: none;
+  }
+
+  .scroll-snap-item {
+    scroll-snap-align: start;
+    flex-shrink: 0;
+  }
+
+  /* Dark dot pattern background */
+  .dot-pattern {
+    background-image: radial-gradient(circle, rgba(255,255,255,0.06) 1px, transparent 1px);
+    background-size: 28px 28px;
+  }
+
+  /* Card gradient overlay */
+  .card-gradient {
+    background: linear-gradient(180deg, transparent 40%, rgba(0,0,0,0.85) 100%);
+  }
+
+  /* Gold button */
+  .btn-gold {
+    @apply bg-gold text-navy font-semibold px-6 py-3 rounded-pill transition-all duration-200 hover:bg-gold-100 active:scale-95;
+  }
+
+  /* White outlined button */
+  .btn-outline-white {
+    @apply border border-white text-white font-semibold px-6 py-3 rounded-pill transition-all duration-200 hover:bg-white/10 active:scale-95 flex items-center gap-2;
+  }
+
+  /* Section heading eyebrow */
+  .eyebrow {
+    @apply text-xs font-semibold uppercase tracking-widest;
+  }
+
+  /* Dark section */
+  .section-dark {
+    background-color: var(--navy);
+    color: white;
+  }
+
+  /* Light section */
+  .section-light {
+    background-color: var(--cream);
+    color: #1a1a1a;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
