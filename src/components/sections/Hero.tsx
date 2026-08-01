@@ -160,16 +160,16 @@ export function Hero() {
           >
             Join Community
           </Link> */}
-          <Link
-            href="#groups"
-            className="group w-full max-w-xs sm:max-w-none sm:w-auto inline-flex items-center justify-center gap-2 border border-white/40 bg-white text-black font-semibold text-sm px-6 py-3 rounded-full hover:bg-white/10 transition-colors"
-          >
-            Explore Groups
-            <ArrowRight
-              size={16}
-              className="transition-transform duration-300 group-hover:rotate-90"
-            />
-          </Link>
+<Link
+  href="#groups"
+  className="group w-full max-w-xs sm:max-w-none sm:w-auto inline-flex items-center justify-center gap-2 border border-white/40 bg-white text-black font-semibold text-sm px-6 py-3 rounded-full hover:opacity-90 transition-opacity"
+>
+  Explore Groups
+  <ArrowRight
+    size={16}
+    className="transition-transform duration-300 group-hover:rotate-90"
+  />
+</Link>
         </div>
       </div>
 

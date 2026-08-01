@@ -1,4 +1,3 @@
-
 'use client'
 
 import { useState, useRef, useEffect } from 'react'
@@ -23,6 +22,58 @@ const TESTIMONIALS = [
     photo: '/assets/ddk.jpeg',
   },
 ]
+
+// Fills its parent (parent controls aspect-ratio/rounding). Shows a shimmer
+// skeleton until the image is actually ready, then cross-fades the two.
+function TestimonialPhoto({ src, alt }: { src: string; alt: string }) {
+  const imgRef = useRef<HTMLImageElement>(null)
+  const [loaded, setLoaded] = useState(false)
+  const [errored, setErrored] = useState(false)
+
+  // If the image was already cached/decoded before this component mounted,
+  // onLoad never fires again — so check img.complete directly as a fallback.
+  useEffect(() => {
+    setLoaded(false)
+    setErrored(false)
+    const img = imgRef.current
+    if (img?.complete) {
+      if (img.naturalWidth === 0) {
+        setErrored(true)
+      } else {
+        setLoaded(true)
+      }
+    }
+  }, [src])
+
+  return (
+    <div className="relative w-full h-full bg-gray-200">
+      <div
+        className={`absolute inset-0 skeleton-shimmer transition-opacity duration-300 ${
+          loaded ? 'opacity-0' : 'opacity-100'
+        }`}
+      />
+      {!errored ? (
+        // eslint-disable-next-line @next/next/no-img-element
+        <img
+          ref={imgRef}
+          src={src}
+          alt={alt}
+          loading="lazy"
+          decoding="async"
+          onLoad={() => setLoaded(true)}
+          onError={() => setErrored(true)}
+          className={`w-full h-full object-cover object-top transition-opacity duration-500 ease-out ${
+            loaded ? 'opacity-100' : 'opacity-0'
+          }`}
+        />
+      ) : (
+        <div className="absolute inset-0 flex items-center justify-center bg-gray-400">
+          <span className="text-white font-semibold text-3xl">{alt.charAt(0)}</span>
+        </div>
+      )}
+    </div>
+  )
+}
 
 export function TestimonialCarousel() {
   const [current, setCurrent] = useState(0)
@@ -68,7 +119,7 @@ export function TestimonialCarousel() {
 
   return (
     <section ref={sectionRef} className="py-16 sm:py-20 bg-cream overflow-hidden">
-     <div className=" max-w-5xl w-full lg:max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+     <div className=" max-w-5xl md:max-w-2xl w-full lg:max-w-4xl mx-auto px-7 sm:px-6 lg:px-8">
 
         {/* ── MOBILE layout (hidden md+) ── */}
         <div className="md:hidden">
@@ -81,14 +132,8 @@ export function TestimonialCarousel() {
                 {t.quote}
               </blockquote>
 
-              <div className="rounded-2xl overflow-hidden mb-5 aspect-[4/3] bg-gray-200">
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
-                  src={t.photo}
-                  alt={t.speaker}
-                  className="w-full h-full object-cover object-top"
-                  loading="lazy"
-                />
+              <div className="rounded-2xl overflow-hidden mb-5 aspect-[4/3]">
+                <TestimonialPhoto src={t.photo} alt={t.speaker} />
               </div>
 
               <p className="text-gray-500 text-sm leading-relaxed mb-4">{t.body}</p>
@@ -96,7 +141,7 @@ export function TestimonialCarousel() {
             </div>
 
             {/* Dot indicators */}
-            <div className="flex items-center justify-center gap-2 mt-6">
+            <div className={`flex items-center justify-center gap-2 mt-6 ${reveal('scroll-reveal-delay-2')}`}>
               {TESTIMONIALS.map((_, i) => (
                 <button
                   key={i}
@@ -120,15 +165,9 @@ export function TestimonialCarousel() {
           <div className={`flex-shrink-0 w-52 lg:w-64 ${reveal()}`}>
             <div
               key={`d-photo-${current}`}
-              className={`rounded-2xl overflow-hidden aspect-[3/4] bg-gray-200 ${enterClass}`}
+              className={`rounded-2xl overflow-hidden aspect-[3/4] ${enterClass}`}
             >
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                src={t.photo}
-                alt={t.speaker}
-                className="w-full h-full object-cover object-top"
-                loading="lazy"
-              />
+              <TestimonialPhoto src={t.photo} alt={t.speaker} />
             </div>
           </div>
 
@@ -147,7 +186,7 @@ export function TestimonialCarousel() {
             </div>
 
             {/* Arrow buttons — bottom right */}
-            <div className="flex items-center gap-2 mt-8 self-end">
+            <div className={`flex items-center gap-2 mt-8 self-end ${reveal('scroll-reveal-delay-2')}`}>
               <button
                 onClick={prev}
                 className="w-10 h-10 rounded-full flex items-center justify-center transition-all duration-150 hover:opacity-80 active:scale-90"
@@ -192,10 +231,22 @@ export function TestimonialCarousel() {
           transform: translateY(0);
         }
         .scroll-reveal-delay-1 { transition-delay: 0.12s; }
+        .scroll-reveal-delay-2 { transition-delay: 0.24s; }
+
+        .skeleton-shimmer {
+          background: linear-gradient(90deg, #e5e0d6 25%, #f3efe6 37%, #e5e0d6 63%);
+          background-size: 400% 100%;
+          animation: skeleton-shimmer-move 1.4s ease-in-out infinite;
+        }
+        @keyframes skeleton-shimmer-move {
+          0% { background-position: 100% 50%; }
+          100% { background-position: 0 50%; }
+        }
 
         @media (prefers-reduced-motion: reduce) {
           .testimonial-enter-r, .testimonial-enter-l { animation: none; }
           .scroll-reveal { transition: none; opacity: 1; transform: none; }
+          .skeleton-shimmer { animation: none; }
         }
       `}</style>
     </section>

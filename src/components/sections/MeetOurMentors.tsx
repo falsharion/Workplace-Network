@@ -1,3 +1,6 @@
+'use client'
+
+import { useRef, useState, useEffect } from 'react'
 import Link from 'next/link'
 import { ArrowUpRight } from 'lucide-react'
 import type { Mentor } from '@/types/database'
@@ -20,6 +23,25 @@ interface MentorCardProps {
 
 function MentorCard({ mentor, index }: MentorCardProps) {
   const slug = nameToSlug(mentor.name)
+  const imgRef = useRef<HTMLImageElement>(null)
+  const [loaded, setLoaded] = useState(false)
+  const [errored, setErrored] = useState(false)
+
+  // Catches images already resolved (cache) before onLoad could attach.
+  useEffect(() => {
+    setLoaded(false)
+    setErrored(false)
+    const img = imgRef.current
+    if (img?.complete) {
+      if (img.naturalWidth === 0) {
+        setErrored(true)
+      } else {
+        setLoaded(true)
+      }
+    }
+  }, [mentor.photo_url])
+
+  const showPhoto = Boolean(mentor.photo_url) && !errored
 
   return (
     <div className="relative rounded-2xl overflow-hidden group aspect-[3/4] w-full">
@@ -27,19 +49,32 @@ function MentorCard({ mentor, index }: MentorCardProps) {
       <div
         className="absolute inset-0 w-full h-full"
         style={{
-          backgroundColor: mentor.photo_url
+          backgroundColor: showPhoto
             ? undefined
             : AVATAR_COLORS[index % AVATAR_COLORS.length],
         }}
       >
-        {mentor.photo_url ? (
-          // eslint-disable-next-line @next/next/no-img-element
-          <img
-            src={mentor.photo_url}
-            alt={mentor.name}
-            className="w-full h-full object-cover object-top"
-            loading="lazy"
-          />
+        {showPhoto ? (
+          <>
+            <div
+              className={`absolute inset-0 skeleton-shimmer transition-opacity duration-300 ${
+                loaded ? 'opacity-0' : 'opacity-100'
+              }`}
+            />
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              ref={imgRef}
+              src={mentor.photo_url ?? undefined}
+              alt={mentor.name}
+              loading="lazy"
+              decoding="async"
+              onLoad={() => setLoaded(true)}
+              onError={() => setErrored(true)}
+              className={`w-full h-full object-cover object-top transition-opacity duration-500 ease-out ${
+                loaded ? 'opacity-100' : 'opacity-0'
+              }`}
+            />
+          </>
         ) : (
           <div className="w-full h-full flex items-center justify-center">
             <div
@@ -77,6 +112,21 @@ function MentorCard({ mentor, index }: MentorCardProps) {
           <ArrowUpRight size={14} />
         </Link>
       </div>
+
+      <style>{`
+        .skeleton-shimmer {
+          background: linear-gradient(90deg, #3a3f47 25%, #565c66 37%, #3a3f47 63%);
+          background-size: 400% 100%;
+          animation: skeleton-shimmer-move 1.4s ease-in-out infinite;
+        }
+        @keyframes skeleton-shimmer-move {
+          0% { background-position: 100% 50%; }
+          100% { background-position: 0 50%; }
+        }
+        @media (prefers-reduced-motion: reduce) {
+          .skeleton-shimmer { animation: none; }
+        }
+      `}</style>
     </div>
   )
 }

@@ -93,7 +93,7 @@ export default async function HomePage() {
   return (
     <>
       <section className="relative overflow-hidden">
-         <Blob className="bottom-[272rem] left-10 md:hidden" size={280} colorFrom="#f97316" colorTo="#facc15" opacity={0.25}/>
+         {/* <Blob className="bottom-[272rem] left-10 md:hidden" size={280} colorFrom="#f97316" colorTo="#facc15" opacity={0.25}/> */}
       <Blob className="bottom-[242rem] left-5 md:hidden" size={150} colorFrom="#f97316" colorTo="#facc15" opacity={0.5} />
       <Navbar />
       <main>

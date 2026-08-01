@@ -42,9 +42,9 @@ export function FeaturedEvent({ event }: FeaturedEventProps) {
     
     <section
       id="events"
-      className=" max-w-5xl w-full lg:max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16 lg:py-24"
+      className=" max-w-5xl md:max-w-2xl w-full lg:max-w-4xl mx-auto px-7 sm:px-6 lg:px-8 py-12 sm:py-16 lg:py-24"
     >
-      max-w-5xl w-full lg:max-w-4xl  bg-white mx-auto px-7 sm:px-6 lg:px-8 py-12 sm:py-16
+      {/* max-w-5xl w-full lg:max-w-4xl  bg-white mx-auto px-7 sm:px-6 lg:px-8 py-12 sm:py-16 */}
       <div className="max-w-7xl mx-auto">
         {/* Section heading */}
         <div className="text-center mb-10 sm:mb-14">

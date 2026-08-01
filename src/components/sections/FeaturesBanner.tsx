@@ -85,7 +85,7 @@ export function FeaturesBanner() {
         {/* Text content */}
         <div
           ref={headerRef}
-          className={`w-full max-w-5xl md:max-w-2xl lg:max-w-4xl mx-auto relative z-10 px-4 sm:px-6 lg:px-8 pt-10 sm:pt-14 transition-all duration-700 ease-out ${
+          className={`w-full max-w-5xl md:max-w-2xl lg:max-w-4xl mx-auto relative z-10 px-7 sm:px-6 lg:px-8 pt-10 sm:pt-14 transition-all duration-700 ease-out ${
             headerInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
           }`}
         >

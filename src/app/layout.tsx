@@ -15,7 +15,10 @@ export const metadata: Metadata = {
   title: 'Workplace Network — Connect. Grow. Thrive with Christian Professionals',
   description:
     'Build your profile, connect with mentors, join groups, and unlock career opportunities in a faith-centered community.',
-  openGraph: {
+   icons: {
+    icon: '/assets/Logo(white)(1).svg',
+  },
+    openGraph: {
     title: 'Workplace Network',
     description: 'A faith-based mentoring and networking platform for Christian career professionals.',
     type: 'website',

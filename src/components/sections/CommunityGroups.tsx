@@ -63,7 +63,7 @@ export function CommunityGroups({ groups }: CommunityGroupsProps) {
   const [activeIndex, setActiveIndex] = useState(0)
 
   return (
-    <section id="groups" className="bg-white py-12 sm:py-16 lg:py-20">
+    <section id="groups" className="bg-white max-w-5xl md:max-w-2xl w-full lg:max-w-4xl mx-auto sm:px-6 py-12 sm:py-16 lg:py-20">
       <div className="max-w-7xl mx-auto ">
 
         {/* Header */}

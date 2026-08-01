@@ -48,13 +48,12 @@ export function WhyWorkplaceNetwork() {
   }
 
   return (
-    <section className="bg-white py-12 sm:py-16 lg:py-20">
+    <section className="bg-white  max-w-5xl md:max-w-2xl w-full lg:max-w-4xl mx-auto sm:px-6  py-12 sm:py-16 lg:py-20">
       <div className="max-w-7xl mx-auto ">
-
         {/* ── md+ : desktop & tablet ── */}
         <div className="hidden md:block">
           <h2 className="text-2xl sm:text-3xl font-bold mb-8" style={{ color: '#0B0E14' }}>
-            WHY Workplace Network
+            Why Workplace Network
           </h2>
 
           {/* Numbered titles + descriptions */}
@@ -182,7 +181,7 @@ export function WhyWorkplaceNetwork() {
               style={{
                 color: '#0B0E14',
                 letterSpacing: '-0.02em',
-                fontSize: 'clamp(0.85rem, 4vw, 1.1rem)',
+                fontSize: 'clamp(0.85rem, 3.9vw, 1.1rem)',
               }}
             >
               CHRISTIAN{' '}

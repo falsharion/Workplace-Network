@@ -170,11 +170,11 @@ export const FAQ_ITEMS = [
     answer:
       'Workplace Network is a faith-based mentoring and networking platform for career professionals and entrepreneurs in the marketplace.',
   },
-  {
-    question: 'Who can join the community?',
-    answer:
-      'It is open to all. The core focus centers on fresh graduates, entry-level workers, mid-level professionals and active job seekers looking to excel',
-  },
+{
+  question: 'How do I join the network?',
+  answer:
+    'During registration, you will be required to complete a short profile capturing your industry, career stage and top goals to select your single mentor cohort.',
+},
   {
     question: 'How do I join the network?',
     answer:
@@ -188,6 +188,6 @@ export const FAQ_ITEMS = [
   {
     question: 'Is the platform free to join?',
     answer:
-      'YES. Access to our general community channels, core career workshops and mentorship program is completely free  for registered members',
+      'YES. Access to our general community channels, core career workshops and mentorship program is completely free for registered members',
   },
 ]

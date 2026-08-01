@@ -21,7 +21,7 @@ const AGE_RANGE_OPTIONS = [
 ]
 
 const EXPERIENCE_OPTIONS = [
-  { value: 'under-5', label: 'less 5 years' },
+  { value: 'under-5', label: 'Less than 5 years' },
   { value: '5-9', label: '5 - 9 years' },
   { value: '10-plus', label: '10+ years' },
 ]
