@@ -6,7 +6,7 @@ export function AboutUsIntro() {
         About Us
       </h2>
       <p className="text-gray-700 text-base sm:text-lg lg:text-xl leading-relaxed">
-     Workplace Network is a faith-based mentoring and networking platform focused on career excellence and future readiness for professionals and entrepreneurs in the marketplace.
+     Workplace Network is a faith-based mentoring and networking platform focused on career excellence and future readiness for professionals and entrepreneurs in the marketplace. We help Christian career professionals to thrive in kingship leveraging priesthood
       </p>
     </div>
   )

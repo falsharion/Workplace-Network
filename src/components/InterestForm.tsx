@@ -538,7 +538,7 @@ function handleFormKeyDown(e: KeyboardEvent<HTMLFormElement>) {
         <h1 className="text-2xl font-bold text-gray-900 mb-2">Welcome, {firstName}!</h1>
         <p className="text-gray-500 leading-relaxed">
           Thanks for your interest in Workplace Network. Our onboarding team will review your
-          application and reach out to you by email soon. Taking you back home now.
+          application and reach out to you soon. Taking you back home now...
         </p>
       </div>
     )
@@ -769,20 +769,20 @@ function handleFormKeyDown(e: KeyboardEvent<HTMLFormElement>) {
             <div className="w-full shrink-0 pl-1 space-y-5">
               <div>
                 <label className={labelClasses}>Preferred Mentor</label>
-                <select
-                  value={preferredMentor}
-                  onChange={(e) => setPreferredMentor(e.target.value)}
-                  className={`${inputClasses(false)} bg-white`}
-                  disabled={disabled}
-                >
-                  <option value="">No preference</option>
-                  {mentors.map((mentor) => (
-                    <option key={mentor.id} value={mentor.name}>
-                      {mentor.name}
-                      {/* {mentor.title ? ` — ${mentor.title}` : ''} */}
-                    </option>
-                  ))}
-                </select>
+<select
+  value={preferredMentor}
+  onChange={(e) => setPreferredMentor(e.target.value)}
+  className={`${inputClasses(false)} bg-white`}
+  disabled={disabled}
+>
+  <option value="">No preference</option>
+  {[...mentors].reverse().map((mentor) => (
+    <option key={mentor.id} value={mentor.name}>
+      {mentor.name}
+      {/* {mentor.title ? ` — ${mentor.title}` : ''} */}
+    </option>
+  ))}
+</select>
               </div>
 
               <div>

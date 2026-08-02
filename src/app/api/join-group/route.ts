@@ -143,7 +143,7 @@ function buildWelcomeEmail({ firstName }: { firstName: string }) {
           application and our onboarding team will review it shortly.
         </p>
         <p style="color: #555; font-size: 15px; line-height: 1.6;">
-          Someone from the team will reach out to you directly by email soon with next steps.
+          Someone from the team will reach out to you directly soon with next steps.
           We're genuinely excited to have you as part of this community.
         </p>
 

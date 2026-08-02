@@ -10,19 +10,19 @@ export type ExperienceGroup = Pick<
 const FALLBACK_GROUPS: ExperienceGroup[] = [
   {
     slug: 'under-5',
-    name: 'Early Level',
+    name: 'Associate',
     description:
       'For early-career professionals building their foundation, finding their footing, and figuring out where their career is headed.',
   },
   {
     slug: '5-9',
-    name: 'Mid Level',
+    name: 'Professionals',
     description:
       'For professionals growing into leadership, sharpening their craft, and taking on bigger responsibility.',
   },
   {
     slug: '10-plus',
-    name: 'Lead Level',
+    name: 'Experts',
     description:
       'For seasoned leaders and mentors ready to share hard-won wisdom and shape the next generation.',
   },

@@ -43,8 +43,6 @@ export function Hero() {
       className="relative overflow-hidden min-h-[85vh] sm:min-h-0 flex flex-col"
       style={{
         backgroundColor: "#0F0C17",
-        borderTopLeftRadius: "1rem",
-        borderTopRightRadius: "1rem",
       }}
     >
       {/* Global animation keyframes for this section */}

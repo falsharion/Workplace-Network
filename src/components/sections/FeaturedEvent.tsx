@@ -8,7 +8,7 @@ import type { Event } from '@/types/database'
 
 const REASONS_TO_JOIN = [
   'Thriving in the new work and new ways era.',
-  'Insights to setting your career value proposition (CVP) for 2026.',
+  'Insights to setting your career value proposition (CVP)',
   'Masterclasses and panel session from industry leaders.',
   'Worship and prayer time.',
 ]

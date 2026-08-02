@@ -52,7 +52,6 @@ export const FALLBACK_CURATED_EVENTS: Event[] = [
     created_at: new Date().toISOString(),
   },
 ]
-
 export const FALLBACK_MENTORS: Mentor[] = [
   { id: '1', name: 'James Mohammed2', title: 'CEO @ Homes Field', photo_url: null, profile_url: '#' },
   { id: '2', name: 'James Mohammed', title: 'CEO @ Homes Field', photo_url: null, profile_url: '#' },
@@ -159,7 +158,7 @@ export const FALLBACK_ARTICLES: Article[] = [
 
 export const REASONS_TO_JOIN = [
   'Thriving in the new work and new ways era.',
-  'Insights to setting your career value proposition (CVP) for 2026.',
+  'Insights to setting your career value proposition (CVP)',
   'Masterclasses and panel session from industry leaders.',
   'Worship and prayer time.',
 ]
@@ -175,11 +174,6 @@ export const FAQ_ITEMS = [
   answer:
     'During registration, you will be required to complete a short profile capturing your industry, career stage and top goals to select your single mentor cohort.',
 },
-  {
-    question: 'How do I join the network?',
-    answer:
-      'During registeration, you will be required to complete a short profile capturing your industry, career stsge and top goals to select your single mentor cohort.',
-  },
   {
     question: 'What benefits do members receive?',
     answer:

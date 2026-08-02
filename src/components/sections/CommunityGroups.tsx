@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useRef, useState } from 'react'
 import Link from 'next/link'
 import { ArrowRight } from 'lucide-react'
 import type { ExperienceGroup } from '@/lib/groups.server'
@@ -61,6 +61,43 @@ interface CommunityGroupsProps {
 
 export function CommunityGroups({ groups }: CommunityGroupsProps) {
   const [activeIndex, setActiveIndex] = useState(0)
+  const [direction, setDirection] = useState<'next' | 'prev'>('next')
+  const touchStartX = useRef<number | null>(null)
+
+  function goTo(i: number, dir: 'next' | 'prev') {
+    setDirection(dir)
+    setActiveIndex(i)
+  }
+
+  function next() {
+    setActiveIndex((i) => {
+      const clamped = Math.min(i + 1, groups.length - 1)
+      if (clamped !== i) setDirection('next')
+      return clamped
+    })
+  }
+
+  function prev() {
+    setActiveIndex((i) => {
+      const clamped = Math.max(i - 1, 0)
+      if (clamped !== i) setDirection('prev')
+      return clamped
+    })
+  }
+
+  function onTouchStart(e: React.TouchEvent) {
+    touchStartX.current = e.touches[0].clientX
+  }
+
+  function onTouchEnd(e: React.TouchEvent) {
+    if (touchStartX.current === null) return
+    const diff = touchStartX.current - e.changedTouches[0].clientX
+    if (diff > 40) next()
+    else if (diff < -40) prev()
+    touchStartX.current = null
+  }
+
+  const enterClass = direction === 'next' ? 'group-enter-r' : 'group-enter-l'
 
   return (
     <section id="groups" className="bg-white max-w-5xl md:max-w-2xl w-full lg:max-w-4xl mx-auto sm:px-6 py-12 sm:py-16 lg:py-20">
@@ -83,14 +120,22 @@ export function CommunityGroups({ groups }: CommunityGroupsProps) {
 
         {/* ── Mobile: full-width single card with dot pagination (below md) ── */}
         <div className="md:hidden">
-          <GroupCard group={groups[activeIndex]} index={activeIndex} mobile />
+          <div
+            className="overflow-hidden"
+            onTouchStart={onTouchStart}
+            onTouchEnd={onTouchEnd}
+          >
+            <div key={activeIndex} className={enterClass}>
+              <GroupCard group={groups[activeIndex]} index={activeIndex} mobile />
+            </div>
+          </div>
 
           {/* Dot indicators */}
           <div className="flex justify-center gap-2 mt-5">
             {groups.map((_, i) => (
               <button
                 key={i}
-                onClick={() => setActiveIndex(i)}
+                onClick={() => goTo(i, i > activeIndex ? 'next' : 'prev')}
                 className={`rounded-full transition-all duration-300 ${
                   i === activeIndex
                     ? 'w-6 h-2.5 bg-gray-800'
@@ -110,6 +155,22 @@ export function CommunityGroups({ groups }: CommunityGroupsProps) {
         </div>
 
       </div>
+
+      <style>{`
+        @keyframes group-enter-r {
+          from { opacity: 0; transform: translateX(24px); }
+          to { opacity: 1; transform: translateX(0); }
+        }
+        @keyframes group-enter-l {
+          from { opacity: 0; transform: translateX(-24px); }
+          to { opacity: 1; transform: translateX(0); }
+        }
+        .group-enter-r { animation: group-enter-r 0.35s cubic-bezier(0.4, 0, 0.2, 1) both; }
+        .group-enter-l { animation: group-enter-l 0.35s cubic-bezier(0.4, 0, 0.2, 1) both; }
+        @media (prefers-reduced-motion: reduce) {
+          .group-enter-r, .group-enter-l { animation: none; }
+        }
+      `}</style>
     </section>
   )
 }
