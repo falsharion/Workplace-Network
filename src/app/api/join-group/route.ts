@@ -133,7 +133,7 @@ function buildWelcomeEmail({ firstName }: { firstName: string }) {
       <head><meta charset="utf-8" /></head>
       <body style="font-family: Arial, sans-serif; color: #333; max-width: 600px; margin: 0 auto; padding: 32px 24px;">
         <div style="text-align: center; margin-bottom: 32px;">
-          <h1 style="color: #E8A33D; font-size: 24px; margin: 0;">workplace</h1>
+          <h1 style="color: #E8A33D; font-size: 24px; margin: 0;">workplace Network</h1>
           <p style="color: #999; font-size: 10px; letter-spacing: 4px; text-transform: uppercase; margin: 4px 0 0;">NEW WORK | NEW WAYS</p>
         </div>
 
@@ -150,7 +150,7 @@ function buildWelcomeEmail({ firstName }: { firstName: string }) {
         <div style="margin: 32px 0; padding: 20px; background: #FAF3E8; border-radius: 12px;">
           <p style="margin: 0; font-size: 13px; color: #888;">
             Please do not reply this email it is not monitored. If you have any questions, please contact us at
-            <a href="mailto:mail@workplacenetwork.org">mail@workplacenetwork.org</a>
+            <a href="mailto:info.workplacenetwork@gmail.com">info.workplacenetwork@gmail.com</a>
           </p>
         </div>
 
