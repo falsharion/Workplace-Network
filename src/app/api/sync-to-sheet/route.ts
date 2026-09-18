@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from 'next/server'
 import { createAdminClient } from '@/lib/supabase'
 
 export const dynamic = 'force-dynamic'
-
+export const revalidate = 0
 // Triggered by cron-job.org every few minutes. Sends unsynced registrations
 // to the Google Sheet in one batch, then marks them as synced.
 // cron-job.org waits about 30 seconds for a response, so keep batches small.
