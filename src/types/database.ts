@@ -9,23 +9,26 @@ export type Json =
 export interface Database {
   public: {
     Tables: {
-      events: {
-        Row: {
-          id: string
-          name: string
-          description: string | null
-          scripture_reference: string | null
-          flyer_url: string | null
-          start_at: string
-          location: string | null
-          is_virtual: boolean
-          is_featured: boolean
-          created_at: string
-        }
-        Insert: Omit<Database['public']['Tables']['events']['Row'], 'id' | 'created_at'>
-        Update: Partial<Database['public']['Tables']['events']['Insert']>
-        Relationships: []
-      }
+events: {
+  Row: {
+    id: string
+    name: string
+    description: string | null
+    scripture_reference: string | null
+    flyer_url: string | null
+    start_at: string
+    location: string | null
+    is_virtual: boolean
+    is_featured: boolean
+    registration_open: boolean
+    created_at: string
+  }
+  Insert: Omit<Database['public']['Tables']['events']['Row'], 'id' | 'created_at' | 'registration_open'> & {
+    registration_open?: boolean
+  }
+  Update: Partial<Database['public']['Tables']['events']['Insert']>
+  Relationships: []
+}
       registrations: {
         Row: {
           id: string
@@ -33,6 +36,8 @@ export interface Database {
           first_name: string
           last_name: string
           email: string
+          phone_number: string
+          synced_to_sheet: boolean
           created_at: string
         }
         Insert: Omit<Database['public']['Tables']['registrations']['Row'], 'id' | 'created_at'>

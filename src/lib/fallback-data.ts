@@ -2,15 +2,15 @@ import type { Event, Mentor, Group, MemberStory, Article } from '@/types/databas
 
 export const FALLBACK_FEATURED_EVENT: Event = {
   id: 'fallback-event-1',
-  name: 'Your Good Works0 — A Career & Work Conference',
-  description:
-    'From weekly mentorship sessions to large-scale conferences, our events calendar is packed with opportunities to learn, network, and grow.',
-  scripture_reference: 'Matthew 5:16',
+  name: 'WORSHIP & THANKSGIVING',
+  description: 'For to everyone who has, more will be given.',
+  scripture_reference: 'Matthew 25:29 NKJV',
   flyer_url: null,
-  start_at: new Date(Date.now() + 4 * 24 * 60 * 60 * 1000).toISOString(), // 4 days from now
+  start_at: new Date(Date.now() + 29 * 24 * 60 * 60 * 1000).toISOString(), // 29 days from now
   location: null,
   is_virtual: true,
   is_featured: true,
+  registration_open: false,
   created_at: new Date().toISOString(),
 }
 
@@ -25,6 +25,7 @@ export const FALLBACK_CURATED_EVENTS: Event[] = [
     location: 'Virtual',
     is_virtual: true,
     is_featured: false,
+    registration_open: false,
     created_at: new Date().toISOString(),
   },
   {
@@ -37,6 +38,7 @@ export const FALLBACK_CURATED_EVENTS: Event[] = [
     location: 'Fantasia Hall, Eko Hotel',
     is_virtual: false,
     is_featured: false,
+    registration_open: false,
     created_at: new Date().toISOString(),
   },
   {
@@ -49,6 +51,7 @@ export const FALLBACK_CURATED_EVENTS: Event[] = [
     location: 'Fantasia Hall, Eko Hotel',
     is_virtual: false,
     is_featured: false,
+    registration_open: false,
     created_at: new Date().toISOString(),
   },
 ]

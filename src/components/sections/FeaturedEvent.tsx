@@ -7,15 +7,16 @@ import { RegistrationForm } from '@/components/RegistrationForm'
 import type { Event } from '@/types/database'
 
 const REASONS_TO_JOIN = [
-  'Thriving in the new work and new ways era.',
-  'Insights to setting your career value proposition (CVP)',
-  'Masterclasses and panel session from industry leaders.',
-  'Worship and prayer time.',
+  'Experience live, Spirit-filled worship.',
+  'Give thanks together.',
+  'Encounter His presence.',
+  'Connect with like-minded professionals.',
 ]
 
 interface FeaturedEventProps {
   event: Event
 }
+
 
 export function FeaturedEvent({ event }: FeaturedEventProps) {
   const [expired, setExpired] = useState(
@@ -23,8 +24,9 @@ export function FeaturedEvent({ event }: FeaturedEventProps) {
   )
 
   const targetDate = new Date(event.start_at)
+  const closed = expired || !event.registration_open
 
-  const formattedDate = targetDate.toLocaleDateString('en-GB', {
+  const formattedDate = targetDate.toLocaleDateString('en-GB',{
     day: 'numeric',
     month: 'long',
     year: 'numeric',
@@ -101,7 +103,7 @@ export function FeaturedEvent({ event }: FeaturedEventProps) {
 
                 <div>
                   <h4 className="text-gray-900 font-semibold text-[15px] mb-3">
-                    Target Audience
+                    Matthew 25:29 NKJV
                   </h4>
                   <p className="text-gray-500 text-sm leading-relaxed">
                     {event.description ??
@@ -149,7 +151,7 @@ export function FeaturedEvent({ event }: FeaturedEventProps) {
 
               <RegistrationForm
                 eventId={event.id}
-                disabled={expired}
+                disabled={closed}
               />
             </div>
           </div>
@@ -241,7 +243,7 @@ export function FeaturedEvent({ event }: FeaturedEventProps) {
 
             <RegistrationForm
               eventId={event.id}
-              disabled={expired}
+              disabled={closed}
             />
           </div>
         </div>
